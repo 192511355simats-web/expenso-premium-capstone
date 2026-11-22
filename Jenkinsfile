@@ -43,19 +43,19 @@ pipeline {
 
         stage('Test Docker Image') {
             steps {
-                bat 'powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\test-image.ps1 -Image "%IMAGE_NAME%:%BUILD_NUMBER%" -BuildNumber "%BUILD_NUMBER%"'
+                bat 'powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test-image.ps1 -Image "%IMAGE_NAME%:%BUILD_NUMBER%" -BuildNumber "%BUILD_NUMBER%"'
             }
         }
 
         stage('Deploy Docker Container') {
             steps {
-                bat 'powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\deploy-image.ps1 -Image "%IMAGE_NAME%:%BUILD_NUMBER%" -ContainerName "%CONTAINER_NAME%" -Port %APP_PORT% -BuildNumber "%BUILD_NUMBER%"'
+                bat 'powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/deploy-image.ps1 -Image "%IMAGE_NAME%:%BUILD_NUMBER%" -ContainerName "%CONTAINER_NAME%" -Port %APP_PORT% -BuildNumber "%BUILD_NUMBER%"'
             }
         }
 
         stage('Verify Deployment') {
             steps {
-                bat 'powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\verify-deployment.ps1 -Port %APP_PORT%'
+                bat 'powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/verify-deployment.ps1 -Port %APP_PORT%'
             }
         }
     }
